@@ -60,7 +60,7 @@
 
 
 <!-- Registro en Alta,Modificacion y Consulta -->
-<form name="FormReg"  *ngIf="AccionABMC != 'L'" class="bg-light"> <!-- [formGroup]='FormReg'-->
+<form name="FormReg" [formGroup]='FormReg' *ngIf="AccionABMC != 'L'" class="bg-light"> 
 
 	<fieldset [disabled]="AccionABMC==='C'">
 		<!--campo Nombre-->
