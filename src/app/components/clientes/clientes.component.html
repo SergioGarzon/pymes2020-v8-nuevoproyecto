@@ -102,22 +102,22 @@
 
 
 
-		<!--campo Fecha-->
+		<!--campo Fecha FechaNacimiento-->
 		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2">Fecha<span
+			<label class="col-form-label col-sm-2 col-sm-offset-2">FechaNacimiento<span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
 				<input class="form-control"
-                           name="Fecha" formControlName="Fecha"
-                           [ngClass]="{'is-invalid': (FormReg.controls.Fecha.touched || submitted)  
-            && FormReg.controls.Fecha.errors}" />
+                           name="FechaNacimiento" formControlName="FechaNacimiento"
+                           [ngClass]="{'is-invalid': (FormReg.controls.FechaNacimiento.touched || submitted)  
+            && FormReg.controls.FechaNacimiento.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.Fecha.touched || submitted) 
-                       && FormReg.controls.Fecha.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.FechaNacimiento.touched || submitted) 
+                       && FormReg.controls.FechaNacimiento.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="FormReg.controls.Fecha.errors?.pattern">
-                    Dato fecha, formato dd/mm/aaaa.
+				<span class="text-danger" *ngIf="FormReg.controls.FechaNacimiento.errors?.pattern">
+                    Dato FechaNacimiento, formato dd/mm/aaaa.
         </span>
 			</div>
 		</div>
