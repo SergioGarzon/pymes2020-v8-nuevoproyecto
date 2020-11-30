@@ -24,7 +24,7 @@ export class ClientesComponent implements OnInit {
     RD: " Revisar los datos ingresados..."
   };
 
-  Lista: Pais[] = [];
+  Lista: Clientes[] = [];
   RegistrosTotal: number;
   SinBusquedasRealizadas = true;
 
@@ -36,18 +36,18 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private paisesService: PaisesService,
+    private clientesService: ClientesService,
     private modalDialogService: ModalDialogService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.FormReg = this.formBuilder.group({
-      IdPais: [0],
+      IdCliente: [0],
       Nombre: [
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(30)]
       ],
-      FechaCenso: [
+      FechaNacimiento: [
         "",
         [
           Validators.required,
@@ -56,7 +56,7 @@ export class ClientesComponent implements OnInit {
           )
         ]
       ],
-      Poblacion: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]],
+      Cuit: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]]
     });
   }
 
@@ -67,26 +67,23 @@ export class ClientesComponent implements OnInit {
     this.FormReg.markAsUntouched();
   }
 
-  
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.paisesService
-      .get()
-      .subscribe((res: any) => {
-        this.Lista = res;
-        this.RegistrosTotal = res.RegistrosTotal;
-      });
+    this.clientesService.get().subscribe((res: any) => {
+      this.Lista = res;
+      this.RegistrosTotal = res.RegistrosTotal;
+    });
   }
 
   BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
 
-    this.paisesService.getById(Dto.IdPais).subscribe((res: any) => {
+    this.clientesService.getById(Dto.IdCliente).subscribe((res: any) => {
       this.FormReg.patchValue(res);
 
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = res.FechaCenso.substr(0, 10).split("-");
-      this.FormReg.controls.FechaCenso.patchValue(
+      var arrFecha = res.FechaNacimiento.substr(0, 10).split("-");
+      this.FormReg.controls.FechaNacimiento.patchValue(
         arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0]
       );
 
@@ -98,7 +95,6 @@ export class ClientesComponent implements OnInit {
     this.BuscarPorId(Dto, "C");
   }
 
-  
   Grabar() {
     this.submitted = true;
     // verificar que los validadores esten OK
@@ -110,18 +106,18 @@ export class ClientesComponent implements OnInit {
     const itemCopy = { ...this.FormReg.value };
 
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.FechaCenso.substr(0, 10).split("/");
+    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
     if (arrFecha.length == 3)
-      itemCopy.FechaCenso = new Date(
+      itemCopy.FechaNacimiento = new Date(
         arrFecha[2],
         arrFecha[1] - 1,
         arrFecha[0]
       ).toISOString();
 
     // agregar post
-    if (itemCopy.IdPais == 0 || itemCopy.IdPais == null) {
-      itemCopy.IdPais = 0;
-      this.paisesService.post(itemCopy).subscribe((res: any) => {
+    if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
+      itemCopy.IdCliente = 0;
+      this.clientesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
         this.Buscar();
