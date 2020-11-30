@@ -10,7 +10,7 @@ import { ModalDialogService } from "../../services/modal-dialog.service";
   styleUrls: ["./clientes.component.css"]
 })
 export class ClientesComponent implements OnInit {
-  Titulo = "Clientes";
+  Titulo = "Países";
   TituloAccionABMC = {
     A: "(Agregar)",
     B: "(Eliminar)",
@@ -18,13 +18,13 @@ export class ClientesComponent implements OnInit {
     C: "(Consultar)",
     L: "(Listado)"
   };
-  AccionABMC = "L"; // inicialmente inicia en el listado de articulos (buscar con parametros)
+  AccionABMC = "L"; // inicialmente inicia en el listado de paises (buscar con parametros)
   Mensajes = {
     SD: " No se encontraron registros...",
     RD: " Revisar los datos ingresados..."
   };
 
-  Lista: Clientes[] = [];
+  Lista: Pais[] = [];
   RegistrosTotal: number;
   SinBusquedasRealizadas = true;
 
@@ -36,21 +36,18 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    //private articulosService: MockArticulosService,
-    //private articulosFamiliasService: MockArticulosFamiliasService,
-    private ventas: ClientesService,
+    private paisesService: PaisesService,
     private modalDialogService: ModalDialogService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.FormFiltro = this.formBuilder.group({
-      Nombre: [""],
-      Activo: [true]
-    });
-
     this.FormReg = this.formBuilder.group({
-      IdCliente: [0],
-      FechaNacimiento: [
+      IdPais: [0],
+      Nombre: [
+        "",
+        [Validators.required, Validators.minLength(4), Validators.maxLength(30)]
+      ],
+      FechaCenso: [
         "",
         [
           Validators.required,
@@ -59,31 +56,49 @@ export class ClientesComponent implements OnInit {
           )
         ]
       ],
-      //Total: [null, [Validators.required, Validators.pattern("[0-9]{1,8}")]],
-      Nombre: [
-        "",
-        [Validators.required, Validators.minLength(1), Validators.maxLength(50)]
-      ]
+      Poblacion: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]],
     });
   }
 
   Agregar() {
     this.AccionABMC = "A";
-    this.FormReg.reset({ Activo: true });
+    //this.FormReg.reset({ Activo: true });
     this.submitted = false;
-    //this.FormReg.markAsPristine();
     this.FormReg.markAsUntouched();
   }
 
-  // Buscar segun los filtros, establecidos en FormReg
+  
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.ventas.get().subscribe((res: any) => {
-      this.Lista = res;
+    this.paisesService
+      .get()
+      .subscribe((res: any) => {
+        this.Lista = res;
+        this.RegistrosTotal = res.RegistrosTotal;
+      });
+  }
+
+  BuscarPorId(Dto, AccionABMC) {
+    window.scroll(0, 0); // ir al incio del scroll
+
+    this.paisesService.getById(Dto.IdPais).subscribe((res: any) => {
+      this.FormReg.patchValue(res);
+
+      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
+      var arrFecha = res.FechaCenso.substr(0, 10).split("-");
+      this.FormReg.controls.FechaCenso.patchValue(
+        arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0]
+      );
+
+      this.AccionABMC = AccionABMC;
     });
   }
 
-  // grabar tanto altas como modificaciones
+  Consultar(Dto) {
+    this.BuscarPorId(Dto, "C");
+  }
+
+  
   Grabar() {
     this.submitted = true;
     // verificar que los validadores esten OK
@@ -95,18 +110,18 @@ export class ClientesComponent implements OnInit {
     const itemCopy = { ...this.FormReg.value };
 
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
+    var arrFecha = itemCopy.FechaCenso.substr(0, 10).split("/");
     if (arrFecha.length == 3)
-      itemCopy.FechaNacimiento = new Date(
+      itemCopy.FechaCenso = new Date(
         arrFecha[2],
         arrFecha[1] - 1,
         arrFecha[0]
       ).toISOString();
 
     // agregar post
-    if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
-      itemCopy.IdCliente = 0;
-      this.ventas.post(itemCopy).subscribe((res: any) => {
+    if (itemCopy.IdPais == 0 || itemCopy.IdPais == null) {
+      itemCopy.IdPais = 0;
+      this.paisesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
         this.Buscar();
@@ -114,7 +129,6 @@ export class ClientesComponent implements OnInit {
     }
   }
 
-  // Volver desde Agregar/Modificar
   Volver() {
     this.AccionABMC = "L";
   }
