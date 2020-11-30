@@ -46,7 +46,7 @@ export class ClientesComponent implements OnInit {
       Nombre: [
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(30)]
-      ],
+      ]
       /*FechaNacimiento: [
         "",
         [
@@ -56,7 +56,7 @@ export class ClientesComponent implements OnInit {
           )
         ]
       ],*/
-      Cuit: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]]
+      //Cuit: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]]
     });
   }
 
