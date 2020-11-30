@@ -24,7 +24,7 @@ export class ClientesComponent  implements OnInit {
     RD: " Revisar los datos ingresados..."
   };
 
-  Lista: Pais[] = [];
+  Lista: Clientes[] = [];
   RegistrosTotal: number;
   SinBusquedasRealizadas = true;
 
@@ -36,7 +36,7 @@ export class ClientesComponent  implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private paisesService: PaisesService,
+    private paisesService: ClientesService,
     private modalDialogService: ModalDialogService
   ) { }
 
