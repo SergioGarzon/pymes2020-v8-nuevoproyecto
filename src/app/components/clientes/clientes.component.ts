@@ -47,7 +47,7 @@ export class ClientesComponent implements OnInit {
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(30)]
       ],
-      FechaNacimiento: [
+      /*FechaNacimiento: [
         "",
         [
           Validators.required,
@@ -55,7 +55,7 @@ export class ClientesComponent implements OnInit {
             "(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[012])[-/](19|20)[0-9]{2}"
           )
         ]
-      ],
+      ],*/
       Cuit: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]]
     });
   }
@@ -82,10 +82,10 @@ export class ClientesComponent implements OnInit {
       this.FormReg.patchValue(res);
 
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = res.FechaNacimiento.substr(0, 10).split("-");
+      /*var arrFecha = res.FechaNacimiento.substr(0, 10).split("-");
       this.FormReg.controls.FechaNacimiento.patchValue(
         arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0]
-      );
+      );*/
 
       this.AccionABMC = AccionABMC;
     });
@@ -106,14 +106,14 @@ export class ClientesComponent implements OnInit {
     const itemCopy = { ...this.FormReg.value };
 
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
+    /*var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
     if (arrFecha.length == 3)
       itemCopy.FechaNacimiento = new Date(
         arrFecha[2],
         arrFecha[1] - 1,
         arrFecha[0]
       ).toISOString();
-
+    */
     // agregar post
     if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
       itemCopy.IdCliente = 0;
