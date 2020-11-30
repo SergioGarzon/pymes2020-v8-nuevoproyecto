@@ -90,6 +90,7 @@ export class ClientesComponent implements OnInit {
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
     const itemCopy = { ...this.FormReg.value };
 
+    /*
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
     var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
     if (arrFecha.length == 3)
@@ -98,7 +99,7 @@ export class ClientesComponent implements OnInit {
         arrFecha[1] - 1,
         arrFecha[0]
       ).toISOString();
-
+*/
     // agregar post
     if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
       itemCopy.IdCliente = 0;
