@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Clientes } from "../../models/clientes";
 import { ClientesService } from "../../services/clientes.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalDialogService } from "../../services/modal-dialog.service";
 
 @Component({
-  selector: 'app-clientes',
-  templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  selector: "app-clientes",
+  templateUrl: "./clientes.component.html",
+  styleUrls: ["./clientes.component.css"]
 })
-export class ClientesComponent  implements OnInit {
+export class ClientesComponent implements OnInit {
   Titulo = "Clientes";
   TituloAccionABMC = {
     A: "(Agregar)",
@@ -38,10 +38,10 @@ export class ClientesComponent  implements OnInit {
     public formBuilder: FormBuilder,
     private ClientesService: ClientesService,
     private modalDialogService: ModalDialogService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    
+    //Aqui poner los datos de angular que sacaste
   }
 
   Agregar() {
@@ -51,15 +51,12 @@ export class ClientesComponent  implements OnInit {
     this.FormReg.markAsUntouched();
   }
 
-  
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.ClientesService
-      .get()
-      .subscribe((res: any) => {
-        this.Lista = res;
-        this.RegistrosTotal = res.RegistrosTotal;
-      });
+    this.ClientesService.get().subscribe((res: any) => {
+      this.Lista = res;
+      this.RegistrosTotal = res.RegistrosTotal;
+    });
   }
 
   BuscarPorId(Dto, AccionABMC) {
@@ -68,11 +65,12 @@ export class ClientesComponent  implements OnInit {
     this.ClientesService.getById(Dto.IdCliente).subscribe((res: any) => {
       this.FormReg.patchValue(res);
 
+      /*
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = res.FechaNacimiento.substr(0, 10).split("-");
-      this.FormReg.controls.FechaNacimiento.patchValue(
+      var arrFecha = res.IdCliente.substr(0, 10).split("-");
+      this.FormReg.controls.IdCliente.patchValue(
         arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0]
-      );
+      );*/
 
       this.AccionABMC = AccionABMC;
     });
@@ -82,7 +80,6 @@ export class ClientesComponent  implements OnInit {
     this.BuscarPorId(Dto, "C");
   }
 
-  
   Grabar() {
     this.submitted = true;
     // verificar que los validadores esten OK
@@ -94,7 +91,7 @@ export class ClientesComponent  implements OnInit {
     const itemCopy = { ...this.FormReg.value };
 
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.FechaCenso.substr(0, 10).split("/");
+    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
     if (arrFecha.length == 3)
       itemCopy.FechaNacimiento = new Date(
         arrFecha[2],
@@ -116,5 +113,4 @@ export class ClientesComponent  implements OnInit {
   Volver() {
     this.AccionABMC = "L";
   }
-
 }
