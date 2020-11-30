@@ -100,22 +100,22 @@
 
 
 
-		<!--campo NumeroDocumento-->
+		<!--campo FechaNacimiento-->
 		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2">NumeroDocumento<span
+			<label class="col-form-label col-sm-2 col-sm-offset-2">FechaNacimiento<span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
 				<input class="form-control"
-                           name="NumeroDocumento" formControlName="NumeroDocumento"
-                           [ngClass]="{'is-invalid': (FormReg.controls.NumeroDocumento.touched || submitted)  
-            && FormReg.controls.NumeroDocumento.errors}" />
+                           name="FechaNacimiento" formControlName="FechaNacimiento"
+                           [ngClass]="{'is-invalid': (FormReg.controls.FechaNacimiento.touched || submitted)  
+            && FormReg.controls.FechaNacimiento.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.NumeroDocumento.touched || submitted) 
-                       && FormReg.controls.NumeroDocumento.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.FechaNacimiento.touched || submitted) 
+                       && FormReg.controls.FechaNacimiento.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="FormReg.controls.NumeroDocumento.errors?.pattern">
-                    Dato NumeroDocumento
+				<span class="text-danger" *ngIf="FormReg.controls.FechaNacimiento.errors?.pattern">
+                    Dato FechaNacimiento
         </span>
 			</div>
 		</div>
