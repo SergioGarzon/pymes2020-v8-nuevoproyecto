@@ -25,7 +25,7 @@ export class ClientesService {
     return this.httpClient.get(this.resourceUrl + Id);
   }
 
-  post(obj: Pais) {
+  post(obj: Clientes) {
     return this.httpClient.post(this.resourceUrl, obj);
   }
   
