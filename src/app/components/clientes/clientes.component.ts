@@ -47,7 +47,7 @@ export class ClientesComponent implements OnInit {
       Nombre: [""],
       Activo: [true]
     });
-    
+
     this.FormReg = this.formBuilder.group({
       IdCliente: [0],
       FechaNacimiento: [
@@ -95,17 +95,17 @@ export class ClientesComponent implements OnInit {
     const itemCopy = { ...this.FormReg.value };
 
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.Fecha.substr(0, 10).split("/");
+    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
     if (arrFecha.length == 3)
-      itemCopy.Fecha = new Date(
+      itemCopy.FechaNacimiento = new Date(
         arrFecha[2],
         arrFecha[1] - 1,
         arrFecha[0]
       ).toISOString();
 
     // agregar post
-    if (itemCopy.IdVenta == 0 || itemCopy.IdVenta == null) {
-      itemCopy.IdVenta = 0;
+    if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
+      itemCopy.IdCliente = 0;
       this.ventas.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
