@@ -36,7 +36,7 @@ export class ClientesComponent  implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private paisesService: ClientesService,
+    private ClientesService: ClientesService,
     private modalDialogService: ModalDialogService
   ) { }
 
@@ -70,7 +70,7 @@ export class ClientesComponent  implements OnInit {
   
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.paisesService
+    this.ClientesService
       .get()
       .subscribe((res: any) => {
         this.Lista = res;
@@ -81,7 +81,7 @@ export class ClientesComponent  implements OnInit {
   BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
 
-    this.paisesService.getById(Dto.IdPais).subscribe((res: any) => {
+    this.ClientesService.getById(Dto.IdCliente).subscribe((res: any) => {
       this.FormReg.patchValue(res);
 
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
@@ -119,9 +119,9 @@ export class ClientesComponent  implements OnInit {
       ).toISOString();
 
     // agregar post
-    if (itemCopy.IdPais == 0 || itemCopy.IdPais == null) {
-      itemCopy.IdPais = 0;
-      this.paisesService.post(itemCopy).subscribe((res: any) => {
+    if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
+      itemCopy.IdCliente = 0;
+      this.ClientesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
         this.Buscar();

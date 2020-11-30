@@ -100,7 +100,7 @@
 
 
 
-		<!--campo Fecha-->
+		<!--campo NumeroDocumento-->
 		<div class="form-group row">
 			<label class="col-form-label col-sm-2 col-sm-offset-2">NumeroDocumento<span
                     class="text-danger">*</span></label>
@@ -110,7 +110,7 @@
                            [ngClass]="{'is-invalid': (FormReg.controls.NumeroDocumento.touched || submitted)  
             && FormReg.controls.NumeroDocumento.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.Fecha.touched || submitted) 
+				<span class="text-danger" *ngIf="(FormReg.controls.NumeroDocumento.touched || submitted) 
                        && FormReg.controls.NumeroDocumento.errors?.required">
                     Dato requerido.
                 </span>
