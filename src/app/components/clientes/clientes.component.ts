@@ -27,7 +27,6 @@ export class ClientesComponent implements OnInit {
   Lista: Clientes[] = [];
   RegistrosTotal: number;
   SinBusquedasRealizadas = true;
-  
 
   Pagina = 1; // inicia pagina 1
 
@@ -48,8 +47,8 @@ export class ClientesComponent implements OnInit {
       Nombre: [""],
       Activo: [true]
     });
+    
     this.FormReg = this.formBuilder.group({
-      IdVenta: [0],
       IdCliente: [0],
       FechaNacimiento: [
         "",
@@ -64,10 +63,9 @@ export class ClientesComponent implements OnInit {
       Nombre: [
         "",
         [Validators.required, Validators.minLength(1), Validators.maxLength(50)]
-      ],
+      ]
     });
   }
-
 
   Agregar() {
     this.AccionABMC = "A";
@@ -80,13 +78,10 @@ export class ClientesComponent implements OnInit {
   // Buscar segun los filtros, establecidos en FormReg
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.ventas
-      .get( )
-      .subscribe((res: any) => {
-        this.Lista = res;
-      });
+    this.ventas.get().subscribe((res: any) => {
+      this.Lista = res;
+    });
   }
-
 
   // grabar tanto altas como modificaciones
   Grabar() {
@@ -116,9 +111,8 @@ export class ClientesComponent implements OnInit {
         this.modalDialogService.Alert("Registro agregado correctamente.");
         this.Buscar();
       });
-    } 
+    }
   }
-
 
   // Volver desde Agregar/Modificar
   Volver() {
