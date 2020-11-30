@@ -59,40 +59,40 @@
 <!-- Registro en Alta,Modificacion y Consulta -->
 <form name="FormReg" [formGroup]='FormReg' *ngIf="AccionABMC != 'L'" class="bg-light">
 
-	<fieldset [disabled]="AccionABMC==='C'">
-		<!--campo Nombre-->
+<fieldset [disabled]="AccionABMC==='C'">
+		<!--campo RazonSocial-->
 		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Nombre">Nombre <span
+			<label class="col-form-label col-sm-2 col-sm-offset-2" for="RazonSocial">RazonSocial <span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" formControlName="Nombre"
-         [ngClass]="{'is-invalid': (FormReg.controls.Nombre.touched || submitted)  
-            && FormReg.controls.Nombre.errors}" />
+				<input type="text" class="form-control" formControlName="RazonSocial"
+         [ngClass]="{'is-invalid': (FormReg.controls.RazonSocial.touched || submitted)  
+            && FormReg.controls.RazonSocial.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.Nombre.touched || submitted) 
-                        && FormReg.controls.Nombre.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.RazonSocial.touched || submitted) 
+                        && FormReg.controls.RazonSocial.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="(FormReg.controls.Nombre.errors?.minlength || FormReg.controls.Nombre.errors?.maxlength) ">
+				<span class="text-danger" *ngIf="(FormReg.controls.RazonSocial.errors?.minlength || FormReg.controls.RazonSocial.errors?.maxlength) ">
                     Dato texto, 4 a 50 caracteres.
                 </span>
 
 			</div>
 		</div>
 
-		<!--campo Cuit-->
+		<!--campo Total-->
 		<div class="row form-group">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Cuit">Cuit <span
+			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Total">Total <span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
-				<input type="text" name="Cuit" class="form-control" formControlName="Cuit"
-            [ngClass]="{'is-invalid': (FormReg.controls.Cuit.touched || submitted)  
-            && FormReg.controls.Cuit.errors}" />
-				<span class="text-danger" *ngIf="(FormReg.controls.Cuit.touched || submitted) 
-                       && FormReg.controls.Cuit.errors?.required">
+				<input type="text" name="Total" class="form-control" formControlName="Total"
+            [ngClass]="{'is-invalid': (FormReg.controls.Total.touched || submitted)  
+            && FormReg.controls.Total.errors}" />
+				<span class="text-danger" *ngIf="(FormReg.controls.Total.touched || submitted) 
+                       && FormReg.controls.Total.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="FormReg.controls.Cuit.errors?.pattern">
+				<span class="text-danger" *ngIf="FormReg.controls.Total.errors?.pattern">
                     Dato numérico, 1 a 7 dígitos.
                 </span>
 			</div>
@@ -100,27 +100,28 @@
 
 
 
-		<!--campo FechaNacimiento-->
+		<!--campo Fecha-->
 		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2">FechaNacimiento<span
+			<label class="col-form-label col-sm-2 col-sm-offset-2">Fecha<span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
 				<input class="form-control"
-                           name="FechaNacimiento" formControlName="FechaNacimiento"
-                           [ngClass]="{'is-invalid': (FormReg.controls.FechaNacimiento.touched || submitted)  
-            && FormReg.controls.FechaNacimiento.errors}" />
+                           name="Fecha" formControlName="Fecha"
+                           [ngClass]="{'is-invalid': (FormReg.controls.Fecha.touched || submitted)  
+            && FormReg.controls.Fecha.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.FechaNacimiento.touched || submitted) 
-                       && FormReg.controls.FechaNacimiento.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.Fecha.touched || submitted) 
+                       && FormReg.controls.Fecha.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="FormReg.controls.FechaNacimiento.errors?.pattern">
-                    Dato FechaNacimiento
+				<span class="text-danger" *ngIf="FormReg.controls.Fecha.errors?.pattern">
+                    Dato fecha, formato dd/mm/aaaa.
         </span>
 			</div>
 		</div>
 
 	</fieldset>
+	
 
 	<!-- Botones Grabar, Cancelar/Volver' -->
 	<div class="row justify-content-center">
