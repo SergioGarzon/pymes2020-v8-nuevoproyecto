@@ -39,7 +39,8 @@ import { ClientesComponent } from "./components/clientes/clientes.component";
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
       { path: 'articulos', component: ArticulosComponent },
-      { path: 'articulosfamilias', component: ArticulosFamiliasComponent }
+      { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
+      { path: 'clientes', component: ClientesComponent}
     ]),
     NgbPaginationModule,
     NgbModalModule,
