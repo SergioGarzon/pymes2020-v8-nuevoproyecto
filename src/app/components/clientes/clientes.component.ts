@@ -85,8 +85,8 @@ export class ClientesComponent  implements OnInit {
       this.FormReg.patchValue(res);
 
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = res.FechaCenso.substr(0, 10).split("-");
-      this.FormReg.controls.FechaCenso.patchValue(
+      var arrFecha = res.FechaNacimiento.substr(0, 10).split("-");
+      this.FormReg.controls.FechaNacimiento.patchValue(
         arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0]
       );
 
@@ -112,7 +112,7 @@ export class ClientesComponent  implements OnInit {
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
     var arrFecha = itemCopy.FechaCenso.substr(0, 10).split("/");
     if (arrFecha.length == 3)
-      itemCopy.FechaCenso = new Date(
+      itemCopy.FechaNacimiento = new Date(
         arrFecha[2],
         arrFecha[1] - 1,
         arrFecha[0]
