@@ -21,13 +21,13 @@
 		<thead>
 			<tr>
 				<th class="text-center">IdCliente</th>
-				<th class="text-center">Nombre</th>        
+				<th class="text-center">Nombre</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let dto of Lista">
 				<td>{{dto.IdCliente}}</td>
-				<td>{{dto.Nombre | uppercase}}</td>	
+				<td>{{dto.Nombre | uppercase}}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -121,6 +121,10 @@
 		</div>
 
 	</fieldset>
+
+<button type="button" *ngIf="AccionABMC!=='C'" class="btn btn-primary" (click)="Grabar()">
+            <span class="fas fa-check"></span> Grabar
+        </button>
 
 	<!-- Botones Grabar, Cancelar/Volver' -->
 	<div class="row justify-content-center">
