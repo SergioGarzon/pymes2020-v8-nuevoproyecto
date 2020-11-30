@@ -19,7 +19,7 @@ import { InicioComponent } from "./components/inicio/inicio.component";
 import { ArticulosComponent } from "./components/articulos/articulos.component";
 import { ArticulosFamiliasComponent } from "./components/articulos-familias/articulos-familias.component";
 import { ModalDialogComponent } from "./components/modal-dialog/modal-dialog.component";
-import { ClientesComponent } from './components/clientes/clientes.component';
+import { ClientesComponent } from "./components/clientes/clientes.component";
 
 @NgModule({
   declarations: [
