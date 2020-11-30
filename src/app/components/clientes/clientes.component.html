@@ -20,19 +20,15 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th class="text-center">IdVenta</th>
-				<th class="text-center">RazonSocial</th>
-				<th class="text-center">Fecha</th>
-				<th class="text-center">Total</th>
+				<th class="text-center">IdCliente</th>
+				<th class="text-center">Nombre</th>
         
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let dto of Lista">
-				<td>{{dto.IdVenta}}</td>
-				<td>{{dto.RazonSocial | uppercase}}</td>	
-				<td>{{dto.Fecha}}</td>
-        <td class="text-right">{{dto.Total| currency:'$'}}</td>
+				<td>{{dto.IdCliente}}</td>
+				<td>{{dto.Nombre | uppercase}}</td>	
 			</tr>
 		</tbody>
 	</table>
