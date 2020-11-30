@@ -81,19 +81,20 @@
 			</div>
 		</div>
 
-		<!--campo Total-->
+
+		<!--campo Cuit-->
 		<div class="row form-group">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Total">Total <span
+			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Cuit">Cuit <span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
-				<input type="text" name="Total" class="form-control" formControlName="Total"
-            [ngClass]="{'is-invalid': (FormReg.controls.Total.touched || submitted)  
-            && FormReg.controls.Total.errors}" />
-				<span class="text-danger" *ngIf="(FormReg.controls.Total.touched || submitted) 
-                       && FormReg.controls.Total.errors?.required">
+				<input type="text" name="Cuit" class="form-control" formControlName="Cuit"
+            [ngClass]="{'is-invalid': (FormReg.controls.Cuit.touched || submitted)  
+            && FormReg.controls.Cuit.errors}" />
+				<span class="text-danger" *ngIf="(FormReg.controls.Cuit.touched || submitted) 
+                       && FormReg.controls.Cuit.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="FormReg.controls.Total.errors?.pattern">
+				<span class="text-danger" *ngIf="FormReg.controls.Cuit.errors?.pattern">
                     Dato numérico, 1 a 7 dígitos.
                 </span>
 			</div>
