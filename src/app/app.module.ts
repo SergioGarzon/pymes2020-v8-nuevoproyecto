@@ -48,7 +48,7 @@ import { ClientesService } from './services/clientes.service';
   entryComponents: [ModalDialogComponent],
   providers: [
      {provide: APP_BASE_HREF, useValue : '/' },
-    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true, providers: [ClientesService] }
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
