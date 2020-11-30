@@ -42,12 +42,12 @@ export class ClientesComponent  implements OnInit {
 
   ngOnInit() {
     this.FormReg = this.formBuilder.group({
-      IdPais: [0],
+      IdCliente: [0],
       Nombre: [
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(30)]
       ],
-      FechaCenso: [
+      FechaNacimiento: [
         "",
         [
           Validators.required,
@@ -56,7 +56,7 @@ export class ClientesComponent  implements OnInit {
           )
         ]
       ],
-      Poblacion: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]],
+      DNI: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]],
     });
   }
 
